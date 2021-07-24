@@ -1,4 +1,4 @@
-const Countries = require("../../../src/models/address/countries");
+const { Countries } = require("../../../src/models/address/countries");
 const mongoose = require("mongoose");
 const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
