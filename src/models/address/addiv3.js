@@ -1,3 +1,4 @@
+const conn = require("../../../src/db/address");
 const mongoose = require("mongoose");
 
 const addiv3Schema = new mongoose.Schema({
@@ -16,7 +17,7 @@ const addiv3Schema = new mongoose.Schema({
 });
 
 const Addiv3 = (coucode) => {
-  return mongoose.model(coucode + "addiv3", addiv3Schema);
+  return conn.model(coucode + "addiv3", addiv3Schema);
 };
 
 module.exports = Addiv3;

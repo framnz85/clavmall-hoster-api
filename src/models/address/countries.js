@@ -1,3 +1,4 @@
+const conn = require("../../../src/db/address");
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
@@ -38,7 +39,7 @@ const countrySchema = new mongoose.Schema({
   adDivList1: [String],
 });
 
-const Countries = mongoose.model("Countries", countrySchema);
+const Countries = conn.model("Countries", countrySchema);
 
 function validateCountry(country) {
   const schema = {

@@ -4,7 +4,7 @@ let conn;
 
 try {
   conn = mongoose.createConnection(
-    "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/address?retryWrites=true&w=majority",
+    "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/allusers?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -12,7 +12,7 @@ try {
       useCreateIndex: true,
     }
   );
-  console.log("Connected to MongoDB: address...");
+  console.log("Connected to MongoDB: allusers...");
 } catch (err) {
   console.log("Unable to connect to MongoDB...");
 }
