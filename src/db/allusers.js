@@ -5,12 +5,15 @@ let conn;
 const dbServer = config.get("dbServer");
 
 try {
-  conn = mongoose.createConnection(dbServer + "allusers", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  });
+  conn = mongoose.createConnection(
+    dbServer + "allusers?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    }
+  );
   console.log("Connected to MongoDB: allusers...");
 } catch (err) {
   console.log("Unable to connect to MongoDB...");
