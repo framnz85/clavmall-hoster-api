@@ -2,6 +2,8 @@ const {
   Countries,
   validate,
 } = require("../../../src/models/address/countries");
+const auth = require("../../../middleware/auth");
+const isAdmin = require("../../../middleware/admin");
 const mongoose = require("mongoose");
 const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
@@ -16,7 +18,7 @@ router.get("/address/country", async (req, res) => {
   }
 });
 
-router.post("/address/country", async (req, res) => {
+router.post("/address/country", [auth, isAdmin], async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -30,7 +32,7 @@ router.post("/address/country", async (req, res) => {
   }
 });
 
-router.put("/address/country/:couid", async (req, res) => {
+router.put("/address/country/:couid", [auth, isAdmin], async (req, res) => {
   if (!ObjectId.isValid(req.params.couid))
     return res
       .status(404)
@@ -55,7 +57,7 @@ router.put("/address/country/:couid", async (req, res) => {
   }
 });
 
-router.delete("/address/country/:couid", async (req, res) => {
+router.delete("/address/country/:couid", [auth, isAdmin], async (req, res) => {
   if (!ObjectId.isValid(req.params.couid))
     return res
       .status(404)

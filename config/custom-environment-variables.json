@@ -1,0 +1,4 @@
+{
+    "jwtPrivateKey": "clavmall_hoster_jwtPrivateKey",
+    "dbServer": "clavmall_hoster_db"
+}

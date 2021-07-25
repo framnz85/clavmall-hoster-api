@@ -42,16 +42,16 @@ const countrySchema = new mongoose.Schema({
 const Countries = conn.model("Countries", countrySchema);
 
 function validateCountry(country) {
-  const schema = {
+  const schema = Joi.object({
     name: Joi.string().min(2).max(255).required(),
     countryCode: Joi.string().min(2).max(3).required(),
     currency: Joi.string().min(3).max(3).required(),
     adDivName1: Joi.string().min(2).max(255),
     adDivName2: Joi.string().min(2).max(255),
     adDivName3: Joi.string().min(2).max(255),
-  };
+  });
 
-  return Joi.validate(country, schema);
+  return schema.validate(country);
 }
 
 exports.Countries = Countries;

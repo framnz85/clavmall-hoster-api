@@ -1,17 +1,16 @@
 const mongoose = require("mongoose");
+const config = require("config");
 
 let conn;
+const dbServer = config.get("dbServer");
 
 try {
-  conn = mongoose.createConnection(
-    "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/address?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    }
-  );
+  conn = mongoose.createConnection(dbServer + "address", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  });
   console.log("Connected to MongoDB: address...");
 } catch (err) {
   console.log("Unable to connect to MongoDB...");
