@@ -1,11 +1,5 @@
 const express = require("express");
 const app = express();
-const fs = require("fs");
-
-fs.appendFile("logfile.log", "Hello content!", function (err) {
-  if (err) throw err;
-  console.log("Saved!");
-});
 
 require("./startup/logging");
 require("./startup/config");
