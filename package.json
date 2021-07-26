@@ -7,6 +7,9 @@
     "start": "node hoster.js",
     "dev": "nodemon hoster.js"
   },
+  "engines": {
+    "node": "14.17.3"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
