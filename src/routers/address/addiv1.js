@@ -1,6 +1,5 @@
 const { Countries } = require("../../../src/models/address/countries");
 const validateObjectId = require("../../../middleware/validateObjectId");
-const mongoose = require("mongoose");
 const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
 const router = new express.Router();

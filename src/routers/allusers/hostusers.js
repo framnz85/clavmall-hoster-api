@@ -4,8 +4,6 @@ const isAdmin = require("../../../middleware/admin");
 const middleValidate = require("../../../middleware/validate");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
-const mongoose = require("mongoose");
-const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
 const router = new express.Router();
 
