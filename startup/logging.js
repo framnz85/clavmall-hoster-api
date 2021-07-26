@@ -19,7 +19,6 @@ winston.add(winston.transports.File, { filename: "logfile.log" });
 const dbServer = config.get("dbServer");
 winston.add(winston.transports.MongoDB, {
   db: dbServer + "allerrors?retryWrites=true&w=majority",
-  level: "info",
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
