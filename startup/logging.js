@@ -1,7 +1,7 @@
 const winston = require("winston");
-require("winston-mongodb");
+// require("winston-mongodb");
 require("express-async-errors");
-const config = require("config");
+// const config = require("config");
 
 winston.handleExceptions(
   new winston.transports.File({ filename: "uncaughtExceptions.log" })
@@ -13,11 +13,11 @@ process.on("unhandledRejection", (ex) => {
 
 winston.add(winston.transports.File, { filename: "logfile.log" });
 
-const dbServer = config.get("dbServer");
-winston.add(winston.transports.MongoDB, {
-  db: dbServer + "allerrors?retryWrites=true&w=majority",
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
+// const dbServer = config.get("dbServer");
+// winston.add(winston.transports.MongoDB, {
+//   db: dbServer + "allerrors?retryWrites=true&w=majority",
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false,
+//   useCreateIndex: true,
+// });
