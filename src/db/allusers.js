@@ -16,7 +16,7 @@ try {
   );
   console.log("Connected to MongoDB: allusers...");
 } catch (err) {
-  console.log("Unable to connect to MongoDB...");
+  console.log("Unable to connect to MongoDB: allusers...");
 }
 
 module.exports = conn;

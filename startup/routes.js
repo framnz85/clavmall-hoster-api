@@ -5,6 +5,7 @@ const addiv2 = require("../src/routers/address/addiv2");
 const addiv3 = require("../src/routers/address/addiv3");
 const users = require("../src/routers/allusers/hostusers");
 const auth = require("../src/routers/allusers/hostauth");
+const error = require("../middleware/error");
 
 module.exports = function (app) {
   app.use(express.json());
@@ -14,4 +15,5 @@ module.exports = function (app) {
   app.use(addiv3);
   app.use(users);
   app.use(auth);
+  app.use(error);
 };
