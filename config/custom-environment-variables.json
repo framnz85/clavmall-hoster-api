@@ -1,4 +1,5 @@
 {
-    "jwtPrivateKey": "clavmall_hoster_jwtPrivateKey",
-    "dbServer": "clavmall_hoster_db"
+    "jwtPrivateKey": "hoster_jwtPrivateKey",
+    "db_address": "hosterdb_address",
+    "db_allusers": "hosterdb_allusers"
 }

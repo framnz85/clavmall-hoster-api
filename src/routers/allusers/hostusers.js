@@ -14,7 +14,7 @@ router.get("/allusers/hostusers", [auth, isAdmin], async (req, res) => {
 
 router.post(
   "/allusers/hostusers",
-  middleValidate(validate),
+  [auth, isAdmin, middleValidate(validate)],
   async (req, res) => {
     let user = await Users.findOne({ email: req.body.email });
 

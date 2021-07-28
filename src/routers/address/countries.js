@@ -11,7 +11,7 @@ const express = require("express");
 const router = new express.Router();
 
 router.get("/address/country", async (req, res) => {
-  const countries = await Countries.find({}, "_id countryCode name");
+  const countries = await Countries.find({}, "_id name countryCode currency");
   res.send(countries);
 });
 

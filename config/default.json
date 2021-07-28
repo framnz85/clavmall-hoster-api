@@ -1,4 +1,5 @@
 {
     "jwtPrivateKey": "123456",
-    "dbServer": "mongodb://localhost/"
+    "db_address": "mongodb://localhost/address",
+    "db_allusers": "mongodb://localhost/allusers"
 }

@@ -36,7 +36,6 @@ const countrySchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 255,
   },
-  adDivList1: [String],
 });
 
 const Countries = conn.model("Countries", countrySchema);
