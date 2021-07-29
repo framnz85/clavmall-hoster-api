@@ -10,12 +10,18 @@ describe("/address/country", () => {
     server = require("../../hoster");
   });
   afterEach(async () => {
-    await Countries.remove({});
-    await Users.remove({});
+    await Countries.deleteMany({});
+    await Users.deleteMany({});
     await server.close();
   });
 
   describe("GET /", () => {
+    it("should return 200 if valid", async () => {
+      const res = await request(server).get("/address/country");
+
+      expect(res.status).toBe(200);
+    });
+
     it("should return all countries", async () => {
       Countries.collection.insertMany([
         { name: "country1", countryCode: "c1", currency: "CO1" },
@@ -24,7 +30,6 @@ describe("/address/country", () => {
 
       const res = await request(server).get("/address/country");
 
-      expect(res.status).toBe(200);
       expect(res.body.length).toBe(2);
       expect(res.body.some((c) => c.name === "country1")).toBeTruthy();
       expect(res.body.some((c) => c.name === "country2")).toBeTruthy();

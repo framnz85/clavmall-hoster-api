@@ -11,8 +11,8 @@ describe("/address/addiv1", () => {
     server = require("../../hoster");
   });
   afterEach(async () => {
-    await Addiv1(coucode).remove({});
-    await Users.remove({});
+    await Addiv1(coucode).deleteMany({});
+    await Users.deleteMany({});
     await server.close();
   });
 
@@ -64,7 +64,7 @@ describe("/address/addiv1", () => {
         name: "adDivName1",
       });
 
-      const res = await response(couid, coucode);
+      res = await response(couid, coucode);
 
       expect(res.status).toBe(200);
       expect(res.body[0]).toHaveProperty("_id");

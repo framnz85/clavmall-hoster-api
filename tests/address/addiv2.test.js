@@ -11,8 +11,8 @@ describe("/address/addiv2", () => {
     server = require("../../hoster");
   });
   afterEach(async () => {
-    await Addiv2(coucode).remove({});
-    await Users.remove({});
+    await Addiv2(coucode).deleteMany({});
+    await Users.deleteMany({});
     await server.close();
   });
 
