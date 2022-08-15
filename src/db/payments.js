@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const config = require("config");
 
 let conn;
-const db_payments = process.env.PAYMENTS_DATABASE;
+const db_payments = config.get("db_payments");
 
 try {
   conn = mongoose.createConnection(db_payments, {

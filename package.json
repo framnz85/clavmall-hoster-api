@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "proxy": "http://localhost:3900",
   "scripts": {
     "start": "node hoster.js",
     "dev": "nodemon hoster.js",
@@ -20,7 +19,6 @@
     "compression": "^1.7.4",
     "config": "^3.3.6",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "helmet": "^4.6.0",
