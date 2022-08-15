@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const config = require("config");
 
 let conn;
-const db_address = config.get("db_address");
+const db_address = process.env.ADDRESS_DATABASE;
 
 try {
   conn = mongoose.createConnection(db_address, {

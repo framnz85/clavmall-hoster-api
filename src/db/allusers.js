@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const config = require("config");
 
 let conn;
-const db_allusers = config.get("db_allusers");
+const db_allusers = process.env.ALLUSERS_DATABASE;
 
 try {
   conn = mongoose.createConnection(db_allusers, {
