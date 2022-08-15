@@ -11,8 +11,38 @@ const express = require("express");
 const router = new express.Router();
 
 router.get("/address/country", async (req, res) => {
-  const countries = await Countries.find({}, "_id name countryCode currency");
-  res.send(countries);
+  const {
+    sortkey = "name",
+    sort = 1,
+    limit = 0,
+    skip = 0,
+    searchText = "",
+  } = req.query;
+
+  if (searchText.length > 0) {
+    const countries = await Countries.find(
+      { $text: { $search: searchText } },
+      "_id name countryCode currency"
+    )
+      .sort({ [sortkey]: sort })
+      .skip(parseInt(skip))
+      .limit(parseInt(limit));
+
+    const length = await Countries.countDocuments({
+      $text: { $search: searchText },
+    });
+
+    res.send({ countries, length });
+  } else {
+    const countries = await Countries.find({}, "_id name countryCode currency")
+      .sort({ [sortkey]: sort })
+      .skip(parseInt(skip))
+      .limit(parseInt(limit));
+
+    const length = await Countries.countDocuments();
+
+    res.send({ countries, length });
+  }
 });
 
 router.post(

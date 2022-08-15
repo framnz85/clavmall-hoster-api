@@ -5,7 +5,9 @@ const addiv1 = require("../src/routers/address/addiv1");
 const addiv2 = require("../src/routers/address/addiv2");
 const addiv3 = require("../src/routers/address/addiv3");
 const users = require("../src/routers/allusers/hostusers");
+const estore = require("../src/routers/allusers/estore");
 const auth = require("../src/routers/allusers/hostauth");
+const payment = require("../src/routers/payments/payment");
 const error = require("../middleware/error");
 
 module.exports = function (app) {
@@ -16,7 +18,9 @@ module.exports = function (app) {
   app.use(addiv2);
   app.use(addiv3);
   app.use(users);
+  app.use(estore);
   app.use(auth);
+  app.use(payment);
   app.use("/", (req, res) => {
     res.send("This site is restricted");
   });

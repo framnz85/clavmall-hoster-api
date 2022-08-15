@@ -31,8 +31,12 @@ describe("/address/country", () => {
       const res = await request(server).get("/address/country");
 
       expect(res.body.length).toBe(2);
-      expect(res.body.some((c) => c.name === "country1")).toBeTruthy();
-      expect(res.body.some((c) => c.name === "country2")).toBeTruthy();
+      expect(
+        res.body.countries.some((c) => c.name === "country1")
+      ).toBeTruthy();
+      expect(
+        res.body.countries.some((c) => c.name === "country2")
+      ).toBeTruthy();
     });
   });
 

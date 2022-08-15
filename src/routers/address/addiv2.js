@@ -13,22 +13,49 @@ router.get(
   async (req, res) => {
     const couid = new ObjectId(req.params.couid);
     const addiv1 = new ObjectId(req.params.addiv1);
+    const {
+      sortkey = "name",
+      sort = 1,
+      limit = 0,
+      skip = 0,
+      searchText = "",
+    } = req.query;
 
     const coucode = req.query.coucode;
     if (!coucode)
       return res.status(404).send(`country code: ${coucode} is not valid`);
 
-    const addiv2 = await Addiv2(coucode).find(
-      { couid: couid, adDivId1: addiv1 },
-      "_id name"
-    );
+    if (searchText.length > 0) {
+      const addiv2 = await Addiv2(coucode)
+        .find(
+          { $text: { $search: searchText }, couid, adDivId1: addiv1 },
+          "_id name"
+        )
+        .sort({ [sortkey]: sort })
+        .skip(parseInt(skip))
+        .limit(parseInt(limit));
 
-    if (addiv2.length === 0)
-      return res
-        .status(404)
-        .send(`No address found on couid: ${couid} with addiv1: ${addiv1}`);
+      const length = await Addiv2(coucode).countDocuments({
+        $text: { $search: searchText },
+        couid,
+        adDivId1: addiv1,
+      });
 
-    res.send(addiv2);
+      res.send({ addiv2, length });
+    } else {
+      const addiv2 = await Addiv2(coucode)
+        .find({ couid, adDivId1: addiv1 }, "_id name")
+        .sort({ [sortkey]: sort })
+        .skip(parseInt(skip))
+        .limit(parseInt(limit));
+
+      const length = await Addiv2(coucode).countDocuments({
+        couid,
+        adDivId1: addiv1,
+      });
+
+      res.send({ addiv2, length });
+    }
   }
 );
 

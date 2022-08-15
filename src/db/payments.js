@@ -2,16 +2,16 @@ const mongoose = require("mongoose");
 const config = require("config");
 
 let conn;
-const db_allusers = config.get("db_allusers");
+const db_payments = config.get("db_payments");
 
 try {
-  conn = mongoose.createConnection(db_allusers, {
+  conn = mongoose.createConnection(db_payments, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,
   });
-  console.log(`Connected to ${db_allusers}...`);
+  console.log(`Connected to ${db_payments}...`);
 } catch (err) {
   console.log("Unable to connect to MongoDB: allusers...");
 }

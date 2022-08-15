@@ -57,17 +57,15 @@ describe("/address/addiv2", () => {
       expect(res.text).toBe(`country code: ${coucode} is not valid`);
     });
 
-    it("should return 404 if no address found", async () => {
+    it("should return 200 if no address found", async () => {
       couid = ObjectId();
       addiv1 = ObjectId();
       coucode = "ph";
 
       res = await response(couid, addiv1, coucode);
 
-      expect(res.status).toBe(404);
-      expect(res.text).toBe(
-        `No address found on couid: ${couid} with addiv1: ${addiv1}`
-      );
+      expect(res.status).toBe(200);
+      expect(res.body.length).toBe(0);
     });
 
     it("should return all addiv1", async () => {
@@ -84,8 +82,8 @@ describe("/address/addiv2", () => {
       res = await response(couid, addiv1, coucode);
 
       expect(res.status).toBe(200);
-      expect(res.body[0]).toHaveProperty("_id");
-      expect(res.body[0]).toHaveProperty("name", "adDivName2");
+      expect(res.body.addiv2[0]).toHaveProperty("_id");
+      expect(res.body.addiv2[0]).toHaveProperty("name", "adDivName2");
     });
   });
 

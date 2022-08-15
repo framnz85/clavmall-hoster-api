@@ -12,17 +12,42 @@ router.get(
   validateObjectId("couid"),
   async (req, res) => {
     const couid = new ObjectId(req.params.couid);
+    const {
+      sortkey = "name",
+      sort = 1,
+      limit = 0,
+      skip = 0,
+      searchText = "",
+    } = req.query;
 
     const coucode = req.query.coucode;
     if (!coucode)
       return res.status(404).send(`country code: ${coucode} is not valid`);
 
-    const addiv1 = await Addiv1(coucode).find({ couid: couid }, "_id name");
+    if (searchText.length > 0) {
+      const addiv1 = await Addiv1(coucode)
+        .find({ $text: { $search: searchText }, couid }, "_id name")
+        .sort({ [sortkey]: sort })
+        .skip(parseInt(skip))
+        .limit(parseInt(limit));
 
-    if (addiv1.length === 0) {
-      return res.status(404).send(`No address found on id: ${couid}`);
+      const length = await Addiv1(coucode).countDocuments({
+        $text: { $search: searchText },
+        couid,
+      });
+
+      res.send({ addiv1, length });
+    } else {
+      const addiv1 = await Addiv1(coucode)
+        .find({ couid }, "_id name")
+        .sort({ [sortkey]: sort })
+        .skip(parseInt(skip))
+        .limit(parseInt(limit));
+
+      const length = await Addiv1(coucode).countDocuments({ couid });
+
+      res.send({ addiv1, length });
     }
-    res.send(addiv1);
   }
 );
 

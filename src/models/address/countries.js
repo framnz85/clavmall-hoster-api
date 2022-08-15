@@ -18,7 +18,13 @@ const countrySchema = new mongoose.Schema({
   currency: {
     type: String,
     required: true,
-    minlength: 3,
+    minlength: 1,
+    maxlength: 3,
+  },
+  currencyAlt: {
+    type: String,
+    required: true,
+    minlength: 1,
     maxlength: 3,
   },
   adDivName1: {
@@ -53,5 +59,6 @@ function validateCountry(country) {
   return schema.validate(country);
 }
 
+exports.countrySchema = countrySchema;
 exports.Countries = Countries;
 exports.validate = validateCountry;

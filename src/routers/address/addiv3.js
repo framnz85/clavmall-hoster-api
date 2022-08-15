@@ -18,25 +18,56 @@ router.get(
     const couid = new ObjectId(req.params.couid);
     const addiv1 = new ObjectId(req.params.addiv1);
     const addiv2 = new ObjectId(req.params.addiv2);
+    const {
+      sortkey = "name",
+      sort = 1,
+      limit = 0,
+      skip = 0,
+      searchText = "",
+    } = req.query;
 
     const coucode = req.query.coucode;
     if (!coucode)
       return res.status(404).send(`country code: ${coucode} is not valid`);
 
-    const addiv3 = await Addiv3(coucode).find(
-      { couid: couid, adDivId1: addiv1, adDivId2: addiv2 },
-      "_id name"
-    );
+    if (searchText.length > 0) {
+      const addiv3 = await Addiv3(coucode)
+        .find(
+          {
+            $text: { $search: searchText },
+            couid: couid,
+            adDivId1: addiv1,
+            adDivId2: addiv2,
+          },
+          "_id name"
+        )
+        .sort({ [sortkey]: sort })
+        .skip(parseInt(skip))
+        .limit(parseInt(limit));
 
-    if (addiv3.length === 0) {
-      return res
-        .status(404)
-        .send(
-          `No address found on couid: ${couid} or id1: ${addiv1} or id2: ${addiv2}`
-        );
+      const length = await Addiv3(coucode).countDocuments({
+        $text: { $search: searchText },
+        couid: couid,
+        adDivId1: addiv1,
+        adDivId2: addiv2,
+      });
+
+      res.send({ addiv3, length });
+    } else {
+      const addiv3 = await Addiv3(coucode)
+        .find({ couid: couid, adDivId1: addiv1, adDivId2: addiv2 }, "_id name")
+        .sort({ [sortkey]: sort })
+        .skip(parseInt(skip))
+        .limit(parseInt(limit));
+
+      const length = await Addiv3(coucode).countDocuments({
+        couid: couid,
+        adDivId1: addiv1,
+        adDivId2: addiv2,
+      });
+
+      res.send({ addiv3, length });
     }
-
-    res.send(addiv3);
   }
 );
 

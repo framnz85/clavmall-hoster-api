@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const router = new express.Router();
 
-router.get("/allusers/hostusers", [auth, isAdmin], async (req, res) => {
+router.get("/allusers/hostusers", async (req, res) => {
   const users = await Users.find({}, "name email");
   res.send(users);
 });
