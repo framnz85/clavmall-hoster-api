@@ -41,18 +41,16 @@ router.get("/allusers/estore", async (req, res) => {
 });
 
 router.post(
-  "/allusers/estore",
-  [auth, isAdmin, middleValidate(validate)],
-  async (req, res) => {
+  "/allusers/estore", async (req, res) => {
     try {
       const estore = new Estore(req.body);
       const result = await estore.save();
       res.send(result);
     } catch (error) {
       if (error.code === 11000) {
-        res.status(400).send("eStore name already exist.");
+        res.status(400).send("Clavstore name already exist.");
       } else {
-        res.status(400).send("Create eStore failed.");
+        res.status(400).send("Create Clavstore failed.");
       }
     }
   }
@@ -68,7 +66,7 @@ router.put(
     });
 
     if (!estore)
-      return res.status(404).send(`No address found on eStore ID: ${estid}`);
+      return res.status(404).send(`No address found on Clavstore ID: ${estid}`);
 
     res.send(estore);
   }
@@ -82,7 +80,7 @@ router.delete(
     const estore = await Estore.findByIdAndDelete(estid);
 
     if (!estore) {
-      return res.status(404).send(`No address found on estore ID: ${estid}`);
+      return res.status(404).send(`No address found on Clavstore ID: ${estid}`);
     }
 
     res.send(estore);

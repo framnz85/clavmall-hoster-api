@@ -10,7 +10,32 @@ const estoreSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 255,
   },
-  
+  owner: {
+    type: String,
+    required: true,
+    unique: true,
+    minlength: 5,
+    maxlength: 255,
+  },
+  email: String,
+  password: String,
+  urlname1: String,
+  urlname2: String,
+  urlname3: String,
+  status: {
+    type: String,
+    default: "pending",
+    enum: [
+      "pending",
+      "pause",
+      "stop",
+      "active",
+    ],
+  },
+  estoreName: String,
+  estoreEmail: String,
+  estoreSupid: String,
+  estoreUrlname: String,
 });
 
 const Estore = conn.model("Estore", estoreSchema);
