@@ -40,6 +40,14 @@ router.get("/allusers/estore", async (req, res) => {
   }
 });
 
+router.get("/user/estore", async (req, res) => {
+  const { estoreid } = req.query;
+
+  const estore = await Estore.find({ _id: ObjectId(estoreid) });
+
+  res.send({ estore });
+});
+
 router.post(
   "/allusers/estore", async (req, res) => {
     try {
