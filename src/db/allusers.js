@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const config = require("config");
 
 let conn;
-const db_allusers = config.get("db_allusers");
+const db_allusers = "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/allusers?retryWrites=true&w=majority";
 
 try {
   conn = mongoose.createConnection(db_allusers, {
