@@ -18,6 +18,7 @@ const estoreSchema = new mongoose.Schema({
     maxlength: 255,
   },
   email: String,
+  mobile: String,
   password: String,
   urlname1: String,
   urlname2: String,

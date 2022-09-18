@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const config = require("config");
 
 let conn;
-const db_address = "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/address?retryWrites=true&w=majority";
+const db_address = config.get("db_address");
 
 try {
   conn = mongoose.createConnection(db_address, {

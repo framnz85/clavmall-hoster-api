@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const config = require("config");
 
 let conn;
-const db_payments = "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/payments?retryWrites=true&w=majority";
+const db_payments = config.get("db_payments");
 
 try {
   conn = mongoose.createConnection(db_payments, {
