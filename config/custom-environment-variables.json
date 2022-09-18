@@ -1,6 +1,6 @@
 {
-  "jwtPrivateKey": "8d17df97833dddfdd1c58b1b5faf763d",
-  "db_address": "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/address?retryWrites=true&w=majority",
-  "db_allusers": "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/allusers?retryWrites=true&w=majority",
-  "db_payments": "mongodb+srv://vidlyuser:02231985143@clavmallcluster.oxbed.mongodb.net/payments?retryWrites=true&w=majority"
+  "jwtPrivateKey": "hoster_jwtPrivateKey",
+  "db_address": "hosterdb_address",
+  "db_allusers": "hosterdb_allusers",
+  "db_payments": "hosterdb_payments"
 }
