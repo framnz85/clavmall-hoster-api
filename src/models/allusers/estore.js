@@ -20,7 +20,10 @@ const estoreSchema = new mongoose.Schema({
   email: String,
   mobile: String,
   password: String,
-  urlname1: String,
+  urlname1: {
+    type: String,
+    unique: true,
+  },
   urlname2: String,
   urlname3: String,
   status: {

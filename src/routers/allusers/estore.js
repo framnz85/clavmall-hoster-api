@@ -18,8 +18,7 @@ router.get("/allusers/estore", async (req, res) => {
 
   if (searchText.length > 0) {
     const estores = await Estore.find(
-      { $text: { $search: searchText } },
-      "_id name"
+      { $text: { $search: searchText } }
     )
       .sort({ [sortkey]: sort })
       .skip(parseInt(skip))
@@ -29,7 +28,7 @@ router.get("/allusers/estore", async (req, res) => {
 
     res.send({ estores, length });
   } else {
-    const estores = await Estore.find({}, "_id name")
+    const estores = await Estore.find({})
       .sort({ [sortkey]: sort })
       .skip(parseInt(skip))
       .limit(parseInt(limit));
@@ -51,9 +50,15 @@ router.get("/user/estore", async (req, res) => {
 router.post(
   "/allusers/estore", async (req, res) => {
     try {
-      const estore = new Estore(req.body);
-      const result = await estore.save();
-      res.send(result);
+      const estoreExist = await Estore.find({ urlname1: req.body.urlname1 });
+
+      if (estoreExist.length > 0) {
+        res.send({err: "Urlname already exist"});
+      } else {
+        const estore = new Estore(req.body);
+        const result = await estore.save();
+        res.send(result);
+      }
     } catch (error) {
       if (error.code === 11000) {
         res.status(400).send("Clavstore name already exist.");
