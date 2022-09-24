@@ -96,6 +96,7 @@ const estoreSchema = new mongoose.Schema({
   },
   imageStorage: {
     type: String,
+    default: "clavmall",
     enum: [
       "clavmall",
       "cloudinary"
