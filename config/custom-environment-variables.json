@@ -2,5 +2,6 @@
   "jwtPrivateKey": "hoster_jwtPrivateKey",
   "db_address": "hosterdb_address",
   "db_allusers": "hosterdb_allusers",
-  "db_payments": "hosterdb_payments"
+  "db_payments": "hosterdb_payments",
+  "db_ogt": "hosterdb_ogt"
 }
