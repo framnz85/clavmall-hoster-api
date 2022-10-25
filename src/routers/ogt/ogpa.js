@@ -9,7 +9,7 @@ const md5 = require('md5');
 
 router.get("/ogt/ogpa", async (req, res) => {
   const {
-    sortkey = "name",
+    sortkey = "createdAt",
     sort = 1,
     limit = 0,
     skip = 0,
