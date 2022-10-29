@@ -3,5 +3,7 @@
   "db_address": "mongodb://localhost/address",
   "db_allusers": "mongodb://localhost/allusers",
   "db_payments": "mongodb://localhost/payments",
-  "db_ogt": "mongodb://localhost/ogt"
+  "db_ogt": "mongodb://localhost/ogt",
+  "db_estore": "mongodb://localhost",
+  "db_estore_ext": ""
 }

@@ -1,7 +1,6 @@
 const conn = require("../../db/ogt");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
-const Joi = require("joi");
 
 const ogpaSchema = new mongoose.Schema(
   {
@@ -27,8 +26,7 @@ const ogpaSchema = new mongoose.Schema(
       default: "pending",
       enum: [
         "pending",
-        "pause",
-        "stop",
+        "paid",
         "active",
       ],
     },
