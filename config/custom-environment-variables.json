@@ -3,5 +3,7 @@
   "db_address": "hosterdb_address",
   "db_allusers": "hosterdb_allusers",
   "db_payments": "hosterdb_payments",
-  "db_ogt": "hosterdb_ogt"
+  "db_ogt": "hosterdb_ogt",
+  "db_estore": "hosterdb_estore",
+  "db_estore_ext": "hosterdb_estore_ext"
 }
