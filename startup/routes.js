@@ -11,6 +11,7 @@ const payment = require("../src/routers/payments/payment");
 const ogpa = require("../src/routers/ogt/ogpa");
 const affiliate = require("../src/routers/affiliate/affiliate");
 const withdraw = require("../src/routers/allusers/withdraw");
+const upgrade = require("../src/routers/allusers/upgrade");
 const error = require("../middleware/error");
 
 module.exports = function (app) {
@@ -27,6 +28,7 @@ module.exports = function (app) {
   app.use(ogpa);
   app.use(affiliate);
   app.use(withdraw);
+  app.use(upgrade);
   app.use("/", (req, res) => {
     res.send("This site is restricted");
   });
