@@ -25,7 +25,7 @@ router.put(
     
     const newEstore = await Estore.findOneAndUpdate(
       { _id: ObjectId(estoreid) },
-      { billingHistory: newBillingHistory },
+      { billingHistory: newBillingHistory, estoreChange: 0 },
       { new: true }
     )
 
