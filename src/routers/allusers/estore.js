@@ -6,6 +6,7 @@ const middleValidate = require("../../../middleware/validateEstore");
 const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
 const router = new express.Router();
+const md5 = require('md5');
 
 router.get("/allusers/estore", async (req, res) => {
   const {
@@ -55,7 +56,9 @@ router.post(
       if (estoreExist.length > 0) {
         res.send({err: "Urlname already exist"});
       } else {
-        const estore = new Estore(req.body);
+        const showPass = req.body.password;
+        const password = md5(showPass)
+        const estore = new Estore({...req.body, showPass, password});
         const result = await estore.save();
         res.send(result);
       }

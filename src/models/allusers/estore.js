@@ -25,6 +25,7 @@ const estoreSchema = new mongoose.Schema({
   },
   email: String,
   mobile: String,
+  showPass: String,
   password: String,
   urlname1: {
     type: String,
@@ -32,6 +33,10 @@ const estoreSchema = new mongoose.Schema({
   },
   urlname2: String,
   urlname3: String,
+  estoreEmail: String,
+  estoreName: String,
+  estoreSupid: String,
+  estoreUrlname: String,
   showHomeCarousel: {
     type: Boolean,
     default: true,
