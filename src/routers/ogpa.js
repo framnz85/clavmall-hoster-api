@@ -1,7 +1,7 @@
-const { Ogpa } = require("../../../src/models/ogt/ogpa");
-const auth = require("../../../middleware/auth");
-const isAdmin = require("../../../middleware/admin");
-const validateObjectId = require("../../../middleware/validateObjectId");
+const { Ogpa } = require("../../src/models/ogt/ogpa");
+const auth = require("../../middleware/auth");
+const isAdmin = require("../../middleware/admin");
+const validateObjectId = require("../../middleware/validateObjectId");
 const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
 const router = new express.Router();

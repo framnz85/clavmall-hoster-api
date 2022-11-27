@@ -1,4 +1,4 @@
-const { Withdrawal } = require("../../../src/models/allusers/withdraw");
+const { Withdrawal } = require("../../src/models/allusers/withdraw");
 const express = require("express");
 const router = new express.Router();
 

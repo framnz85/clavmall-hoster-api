@@ -1,14 +1,18 @@
 const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const { readdirSync } = require("fs");
+require("dotenv").config();
+
 const app = express();
 
-require('dotenv').config()
+app.use(morgan("dev"));
+app.use(express.json({ limit: "2mb" }));
+app.use(cors());
 
-require("./startup/routes")(app);
-require("./startup/prod")(app);
-
-const port = process.env.PORT || 3900;
-const server = app.listen(port, () =>
-  console.log(`Listening on port ${port}...`)
+readdirSync("./src/routers").map((route) =>
+  app.use("/", require("./src/routers/" + route))
 );
 
-module.exports = server;
+const port = process.env.PORT || 3900;
+app.listen(port, () => console.log(`Server is running on port ${port}`));

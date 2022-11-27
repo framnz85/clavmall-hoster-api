@@ -1,7 +1,7 @@
-const { Users, validate } = require("../../../src/models/allusers/hostusers");
-const auth = require("../../../middleware/auth");
-const isAdmin = require("../../../middleware/admin");
-const middleValidate = require("../../../middleware/validate");
+const { Users, validate } = require("../../src/models/allusers/hostusers");
+const auth = require("../../middleware/auth");
+const isAdmin = require("../../middleware/admin");
+const middleValidate = require("../../middleware/validate");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const express = require("express");

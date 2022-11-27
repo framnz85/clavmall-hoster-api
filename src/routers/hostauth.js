@@ -1,5 +1,5 @@
-const { Users } = require("../../../src/models/allusers/hostusers");
-const middleValidate = require("../../../middleware/validate");
+const { Users } = require("../../src/models/allusers/hostusers");
+const middleValidate = require("../../middleware/validate");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 const express = require("express");

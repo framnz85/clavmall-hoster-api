@@ -1,8 +1,8 @@
-const { Addiv1, validate } = require("../../../src/models/address/addiv1");
-const auth = require("../../../middleware/auth");
-const isAdmin = require("../../../middleware/admin");
-const validateObjectId = require("../../../middleware/validateObjectId");
-const middleValidate = require("../../../middleware/validate");
+const { Addiv1, validate } = require("../../src/models/address/addiv1");
+const auth = require("../../middleware/auth");
+const isAdmin = require("../../middleware/admin");
+const validateObjectId = require("../../middleware/validateObjectId");
+const middleValidate = require("../../middleware/validate");
 const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
 const router = new express.Router();

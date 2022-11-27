@@ -1,11 +1,11 @@
 const {
   Countries,
   validate,
-} = require("../../../src/models/address/countries");
-const auth = require("../../../middleware/auth");
-const isAdmin = require("../../../middleware/admin");
-const validateObjectId = require("../../../middleware/validateObjectId");
-const middleValidate = require("../../../middleware/validate");
+} = require("../../src/models/address/countries");
+const auth = require("../../middleware/auth");
+const isAdmin = require("../../middleware/admin");
+const validateObjectId = require("../../middleware/validateObjectId");
+const middleValidate = require("../../middleware/validate");
 const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
 const router = new express.Router();
