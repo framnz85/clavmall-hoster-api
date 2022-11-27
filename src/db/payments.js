@@ -1,17 +1,14 @@
 const mongoose = require("mongoose");
-const config = require("config");
-
 let conn;
-const db_payments = config.get("db_payments");
 
 try {
-  conn = mongoose.createConnection(db_payments, {
+  conn = mongoose.createConnection(process.env.PAYMENTS_DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,
   });
-  console.log(`Connected to ${db_payments}...`);
+  console.log(`Connected to ${process.env.PAYMENTS_DATABASE}...`);
 } catch (err) {
   console.log("Unable to connect to MongoDB: allusers...");
 }

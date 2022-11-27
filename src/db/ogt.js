@@ -1,17 +1,14 @@
 const mongoose = require("mongoose");
-const config = require("config");
-
 let conn;
-const db_ogt = config.get("db_ogt");
 
 try {
-  conn = mongoose.createConnection(db_ogt, {
+  conn = mongoose.createConnection(process.env.OGT_DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,
   });
-  console.log(`Connected to ${db_ogt}...`);
+  console.log(`Connected to ${process.env.OGT_DATABASE}...`);
 } catch (err) {
   console.log("Unable to connect to MongoDB: allusers...");
 }

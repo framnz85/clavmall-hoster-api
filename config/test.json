@@ -1,5 +1,0 @@
-{
-    "jwtPrivateKey": "123456",
-    "db_address": "mongodb://localhost/testdb",
-    "db_allusers": "mongodb://localhost/testdb"
-}

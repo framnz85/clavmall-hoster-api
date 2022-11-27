@@ -1,4 +1,3 @@
-const Affiliate = require("../../models/affiliate/affiliate");
 const { Ogpa } = require("../../../src/models/ogt/ogpa");
 const auth = require("../../../middleware/auth");
 const isAdmin = require("../../../middleware/admin");
@@ -39,35 +38,6 @@ router.get("/ogt/ogpa", async (req, res) => {
     res.send({ ogpa, length });
   }
 });
-
-router.put(
-  "/ogt/ogpa/:ogpaid",
-  [auth, isAdmin, validateObjectId("ogpaid")],
-  async (req, res) => {
-    const ogpaid = new ObjectId(req.params.ogpaid);
-    const status = req.body.status;
-    let ogpa;
-    if (status === "active") {
-      const password = req.body.password
-      const md5pass = md5(password);
-      ogpa = await Ogpa.findByIdAndUpdate(ogpaid, {...req.body, md5pass}, {
-        new: true,
-      });
-      await Affiliate(req.body.refid).findByIdAndUpdate(req.body.affid, {status: "Approved"}, {
-        new: true,
-      });
-    } else {
-      ogpa = await Ogpa.findByIdAndUpdate(ogpaid, req.body, {
-        new: true,
-      });
-    }
-
-    if (!ogpa)
-      return res.status(404).send(`No user found on Ogpa ID: ${ogpaid}`);
-
-    res.send(ogpa);
-  }
-);
 
 router.delete(
   "/ogt/ogpa/:ogpaid",

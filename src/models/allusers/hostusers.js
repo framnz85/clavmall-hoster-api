@@ -2,7 +2,6 @@ const conn = require("../../../src/db/allusers");
 const mongoose = require("mongoose");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
-const config = require("config");
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true, minlength: 5, maxlength: 255 },
@@ -29,7 +28,7 @@ userSchema.methods.generateAuthToken = function () {
       isAdmin: this.isAdmin,
       isModerator: this.isModerator,
     },
-    config.get("jwtPrivateKey")
+    process.env.JWT_PRIVATE_KEY
   );
 
   return token;
