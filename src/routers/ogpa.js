@@ -5,7 +5,6 @@ const validateObjectId = require("../../middleware/validateObjectId");
 const ObjectId = require("mongoose").Types.ObjectId;
 const express = require("express");
 const router = new express.Router();
-const md5 = require('md5');
 
 router.get("/ogt/ogpa", async (req, res) => {
   const {

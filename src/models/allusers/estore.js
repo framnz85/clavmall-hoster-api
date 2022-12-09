@@ -140,6 +140,8 @@ const estoreSchema = new mongoose.Schema({
   ],
 });
 
+estoreSchema.index({ name: 'text', urlname1: 'text', owner: 'text' });
+
 const Estore = conn.model("Estore", estoreSchema);
 
 function validateEstore(user) {

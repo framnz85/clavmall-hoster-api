@@ -7,12 +7,10 @@ const ogpaSchema = new mongoose.Schema(
     amount: String,
     name: {
       type: String,
-      index: true,
     },
     email: {
       type: String,
       unique: true,
-      index: true,
     },
     refid: ObjectId,
     password: String,
@@ -32,6 +30,8 @@ const ogpaSchema = new mongoose.Schema(
     },
   }
 );
+
+ogpaSchema.index({ name: 'text', email: 'text' });
 
 const Ogpa = conn.model("Ogpa", ogpaSchema);
 

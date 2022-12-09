@@ -18,12 +18,20 @@ router.get("/allusers/estore", async (req, res) => {
   } = req.query;
 
   if (searchText.length > 0) {
-    const estores = await Estore.find(
-      { $text: { $search: searchText } }
-    )
-      .sort({ [sortkey]: sort })
-      .skip(parseInt(skip))
-      .limit(parseInt(limit));
+    let estores = [];
+    if (ObjectId.isValid(searchText)) {
+      estores = await Estore.find({_id: ObjectId(searchText)})
+        .sort({ [sortkey]: sort })
+        .skip(parseInt(skip))
+        .limit(parseInt(limit));
+    } else {
+      estores = await Estore.find(
+        { $text: { $search: searchText } }
+      )
+        .sort({ [sortkey]: sort })
+        .skip(parseInt(skip))
+        .limit(parseInt(limit));
+    }
 
     const length = await Estore.countDocuments();
 
